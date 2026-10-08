@@ -1,3 +1,5 @@
+<p align="center"><img src="AudioDek_logo.png" alt="AudioDek logo" width="200"></p>
+
 # AudioDek — LoxBerry multiroom setup
 
 **Experimental / testers wanted. Current test release: v1.0.5, English edition.**
