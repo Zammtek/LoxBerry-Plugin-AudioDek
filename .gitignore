@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.sonn-inventory-session
+.room-output-key
+settings.json
+backups/
