@@ -2,7 +2,7 @@
 
 # AudioDek — LoxBerry multiroom setup
 
-**Experimental / testers wanted. Current test release: v1.0.5, English edition.**
+**Experimental / testers wanted. Current test release: v1.0.6, English / Spanish edition.**
 
 AudioDek helps assign Squeezelite players to rooms supplied by Sonn and Loxone,
 with guided diagnostics, pre-change backups and an illustrated setup guide.
@@ -31,9 +31,19 @@ automatic updates and pre-release updates for AudioDek in LoxBerry's plugin
 management. Installing v1.0.5 manually bootstraps this feature; older packages
 do not contain the repository URL. No newer update is available until published.
 
-The installed edition remains English. A selectable-language edition is a
-future improvement. User-defined room/player names, settings and backup paths
-are unchanged. Confirm changes with ASSIGN, REMOVE and RESTORE.
+## Language / Idioma
+
+Choose **English** or **Español** at the top of AudioDek and save your preference.
+On first use, AudioDek reads LoxBerry's language (English/Spanish); other languages
+fall back to English. The preference belongs to this AudioDek installation.
+The interface, diagnostics, messages and illustrated guide follow the selection.
+Existing room/player names, settings and backups are not translated or modified.
+Open forms keep their original language. Confirm with ASSIGN/REMOVE/RESTORE in
+English or ASIGNAR/RETIRAR/RESTAURAR in Spanish.
+
+Selecciona **Español** en **Language / Idioma** y pulsa **Guardar idioma**.
+La preferencia se conserva al actualizar; las habitaciones y backups no cambian.
+El manual está disponible en ambos idiomas.
 
 ## Backup scope and validation status
 
