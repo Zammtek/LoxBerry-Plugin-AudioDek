@@ -2,7 +2,5 @@ __pycache__/
 *.pyc
 .sonn-inventory-session
 .room-output-key
-.language-key
-language.json
 settings.json
 backups/

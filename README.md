@@ -2,7 +2,7 @@
 
 # AudioDek — LoxBerry multiroom setup
 
-**Experimental / testers wanted. Current test release: v1.0.6, English / Spanish edition.**
+**Experimental / testers wanted. Current test release: v1.0.7, English / Spanish edition.**
 
 AudioDek helps assign Squeezelite players to rooms supplied by Sonn and Loxone,
 with guided diagnostics, pre-change backups and an illustrated setup guide.
@@ -53,7 +53,7 @@ revert later configuration changes in other rooms. Keep a Loxone project copy.
 
 Room/configuration display has been tested in the existing installation. New
 features have local simulated-service tests. Authenticated player discovery,
-fresh installation and the actual LoxBerry auto-update flow are still pending.
+fresh installation and fresh-system testing remain pending. The user confirmed the 1.0.5 to 1.0.6 LoxBerry update and Spanish interface.
 
 ## Reporting issues
 
@@ -68,5 +68,19 @@ and screenshots. Test configuration changes in a suitable test environment.
 - [Sonn](https://github.com/sonn-audio/core)
 - [piCorePlayer](https://docs.picoreplayer.org/)
 
-No project license has been selected yet; publication alone does not grant an
-open-source license. This repository contains no credentials or live room data.
+## License / Licencia
+
+Copyright (c) 2026 David Zapata. AudioDek's own source code, build scripts,
+installation scripts and original guide text are licensed under **Simple Public
+License 2.0 (SimPL-2.0)**. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
+The source archive includes the editable files and a standalone packaging script.
+When redistributing modifications, retain notices, identify your changes and
+provide the corresponding source under SimPL or substantially similar terms.
+
+El código propio y el texto original del manual de AudioDek se publican bajo
+**SimPL-2.0**. Consulta LICENSE y NOTICE.md. Se permite usar, modificar y
+redistribuir respetando las condiciones de la licencia.
+
+External software, trademarks and third-party screenshot elements retain their
+own rights. They are not relicensed by AudioDek. This repository contains no
+credentials or live room data.

@@ -1,6 +1,13 @@
 # Changelog
 
-## 1.0.6 — experimental
+## 1.0.7 — experimental — 2026-10-10
+- Adopt SimPL-2.0 for original AudioDek code and documentation; add LICENSE,
+  provenance notices and editable source with a standalone packaging script.
+- Fix RELEASECFG=false being interpreted as a download host by LoxBerry.
+- Preserve the bilingual interface, room settings and backup paths.
+
+
+## 1.0.7 — experimental
 - English/Spanish selector with an installation-wide saved preference.
 - Default to the LoxBerry language when supported, otherwise English.
 - Both illustrated guides and localized confirmation words.
