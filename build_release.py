@@ -7,7 +7,7 @@ base=Path(__file__).resolve().parent
 cfg=configparser.ConfigParser();cfg.read(base/'plugin.cfg')
 version=cfg['PLUGIN']['VERSION']
 target=base.parent/('AudioDek_LoxBerry4_v'+version+'_EN_ES_x86_64.zip')
-excluded={'SHA256SUMS','build_release.py'}
+excluded={'SHA256SUMS','build_release.py','verify_release.py'}
 with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as z:
     for path in sorted(base.rglob('*')):
         if not path.is_file():continue

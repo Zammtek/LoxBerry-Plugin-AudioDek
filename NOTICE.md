@@ -27,3 +27,6 @@ https://loxwiki.atlassian.net/wiki/spaces/LOX/pages/1516077056
 
 The license grant covers only rights the project owner can grant. It does not
 constitute clearance or relicensing of third-party screenshots or trademarks.
+
+2026-10-12: AudioDek 1.0.8 corrects the empty RELEASECFG introduced in 1.0.7.
+A valid reserved stable feed keeps pre-release update support enabled.

@@ -2,7 +2,7 @@
 
 # AudioDek — LoxBerry multiroom setup
 
-**Experimental / testers wanted. Current test release: v1.0.7, English / Spanish edition.**
+**Experimental / testers wanted. Current test release: v1.0.8, English / Spanish edition.**
 
 AudioDek helps assign Squeezelite players to rooms supplied by Sonn and Loxone,
 with guided diagnostics, pre-change backups and an illustrated setup guide.
@@ -26,10 +26,14 @@ LoxBerry Plugin Management. Update an existing AudioDek installation without
 uninstalling. AudioTek is a separate personal plugin and is not updated here.
 
 This release enables LoxBerry's update support for the **pre-release channel**.
-The stable update channel is disabled. To receive later test releases, enable
+The stable feed is reserved at version 0.0.0, so it offers no stable update. To receive later test releases, enable
 automatic updates and pre-release updates for AudioDek in LoxBerry's plugin
 management. Installing v1.0.5 manually bootstraps this feature; older packages
 do not contain the repository URL. No newer update is available until published.
+
+**Recovery from v1.0.7:** install the v1.0.8 installer ZIP manually once, without uninstalling AudioDek. The 1.0.7 installer disabled update support because RELEASECFG was empty. After upgrading, select Pre- and Releases in LoxBerry. Existing room settings, backups and language preference are retained.
+
+**Recuperación desde v1.0.7:** instala manualmente el ZIP de v1.0.8 una vez, sin desinstalar AudioDek; después selecciona Pre- y Releases. La configuración de habitaciones, los backups y el idioma se conservan.
 
 ## Language / Idioma
 

@@ -10,16 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and publish v1.0.7
+      - name: Build and publish v1.0.8
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 build_release.py
           python3 -m compileall -q bin
-          gh release create v1.0.7 --prerelease --title "AudioDek v1.0.7 — SimPL-2.0" --notes "English/Spanish edition. Adds the SimPL-2.0 license, notices and editable source. Installation confirmed by the project owner; discovery on a fresh system remains pending." ../AudioDek_LoxBerry4_v1.0.7_EN_ES_x86_64.zip SHA256SUMS
-          printf '[AUTOUPDATE]\nVERSION=1.0.7\nARCHIVEURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/download/v1.0.7/AudioDek_LoxBerry4_v1.0.7_EN_ES_x86_64.zip\nINFOURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/tag/v1.0.7\n' > prerelease.cfg
+          python3 verify_release.py
+          gh release create v1.0.8 --prerelease --title "AudioDek v1.0.8 — automatic update fix" --notes "Restores automatic updates disabled by empty RELEASECFG in 1.0.7. Install this ZIP manually once without uninstalling, then select Pre- and Releases. Application logic, settings, backups and language remain unchanged. Metadata and package checks pass; confirmation on LoxBerry remains pending." ../AudioDek_LoxBerry4_v1.0.8_EN_ES_x86_64.zip SHA256SUMS
+          printf '[AUTOUPDATE]\nVERSION=1.0.8\nARCHIVEURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/download/v1.0.8/AudioDek_LoxBerry4_v1.0.8_EN_ES_x86_64.zip\nINFOURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/tag/v1.0.8\n' > prerelease.cfg
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add prerelease.cfg SHA256SUMS
-          git commit -m "Enable AudioDek v1.0.7 update after publishing installer"
+          git commit -m "Enable AudioDek v1.0.8 update after publishing installer"
           git push
