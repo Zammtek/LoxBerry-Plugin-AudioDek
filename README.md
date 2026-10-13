@@ -8,6 +8,11 @@ AudioDek helps assign Squeezelite players to rooms supplied by Sonn and Loxone,
 with guided diagnostics, pre-change backups and an illustrated setup guide.
 Playback is handled by Sonn; everyday controls remain in the Loxone app.
 
+## Documentation and community
+
+- [AudioDek documentation on the LoxBerry Wiki](https://wiki.loxberry.de/plugins/audiodek/start)
+- [AudioDek discussion, feedback and support on LoxForum](https://www.loxforum.com/forum/projektforen/loxberry/plugins/493296)
+
 ## Requirements
 
 - LoxBerry 4.0, x86_64 and Python 3.
