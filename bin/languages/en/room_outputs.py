@@ -80,6 +80,18 @@ def plan(cfg, zid, operation, name='', host='', player_id=''):
         raise ValueError('This operation supports only Squeezelite outputs or zones without an output.')
     if 'transports' in target:
         raise ValueError('This zone uses a legacy output format and cannot be changed here.')
+    if operation == 'assign_dlna':
+        if current is not None:
+            raise ValueError('Choose a room without an output.')
+        addr = ipaddress.IPv4Address(host)
+        if addr.is_loopback or addr.is_multicast or addr.is_unspecified or addr.is_link_local or int(addr) == 0xffffffff:
+            raise ValueError('Invalid DLNA address / Dirección DLNA no válida.')
+        for zone in cfg['zones']:
+            output = zone.get('output') or {}
+            if isinstance(output, dict) and str(zone['id']) != str(zid) and host in (output.get('host'), output.get('address')):
+                raise ValueError('This address is already assigned to another room.')
+        target['output'] = dict(id='dlna', host=host, deviceName=name, autoDiscover=True)
+        return result, target
     if operation == 'detach':
         if current is None:
             raise ValueError('The room already has no player.')
@@ -218,7 +230,7 @@ def apply(path, backup_folder, fingerprint, zid, operation, fields, services,
         active_before = services['active']()
         parsed = next(z for z in services['parse'](cfg) if z['id'] == str(zid))
         original_zone = next(z for z in cfg['zones'] if str(z['id']) == str(zid))
-        if operation == 'assign' and original_zone.get('output') is None:
+        if operation in ('assign', 'assign_dlna') and original_zone.get('output') is None:
             backup = make_output_backup(path, backup_folder, parsed, 'pre-output-assign', services['backup'], run)
         else:
             backup = services['backup'](parsed, 'pre-output-' + operation)

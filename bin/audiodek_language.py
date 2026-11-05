@@ -16,7 +16,7 @@ SYSTEM = Path('/opt/loxberry/config/system')
 
 def normalize(value):
     code = str(value or '').strip().lower().replace('_', '-').split('-')[0]
-    return code if code in ('en', 'es') else 'en'
+    return code if code in ('en', 'es', 'de') else 'en'
 
 def default_language():
     try:
@@ -37,7 +37,7 @@ def default_language():
 def current_language():
     try:
         data = json.loads((FOLDER / 'language.json').read_text(encoding='utf-8'))
-        if data.get('language') in ('en', 'es'):
+        if data.get('language') in ('en', 'es', 'de'):
             return data['language']
     except (OSError, ValueError, AttributeError):
         pass
@@ -56,7 +56,7 @@ def token():
     return hmac.new(keyfile.read_bytes(), b'audiodek-language-v1', hashlib.sha256).hexdigest()
 
 def save_language(language, supplied_token):
-    if language not in ('en', 'es') or not hmac.compare_digest(token(), str(supplied_token)):
+    if language not in ('en', 'es', 'de') or not hmac.compare_digest(token(), str(supplied_token)):
         raise ValueError('Invalid language request / Solicitud de idioma no válida.')
     fd, temporary = tempfile.mkstemp(prefix='.language-', dir=FOLDER)
     try:

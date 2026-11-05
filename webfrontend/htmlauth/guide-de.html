@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AudioDek – Praktische Installationsanleitung</title>
+<style>
+body{margin:0;background:#f3f5f7;color:#172230;font:16px/1.6 system-ui,sans-serif}main{max-width:900px;margin:24px auto;padding:24px;background:white;border-radius:12px}h1,h2{line-height:1.25}figure{margin:20px 0}img{max-width:100%;height:auto}a{color:#075ea8}li{margin:.4em 0}@media print{main{margin:0;padding:0}nav{display:none}}
+</style>
+</head>
+<body><main>
+<nav><a href="index.cgi">Zurück zu AudioDek</a> · <a href="guide-en.html">English</a> · <a href="guide-es.html">Español</a></nav>
+<h1>AudioDek 1.0.11 – Praktische Installationsanleitung</h1>
+<p>AudioDek hilft bei der Einrichtung und Wartung von Audiozonen. Sonn übernimmt die Wiedergabe; die Bedienung im Alltag bleibt in der Loxone App möglich.</p>
+<h2>1. Voraussetzungen prüfen</h2>
+<ul>
+<li>LoxBerry 4.0 oder neuer auf x86_64 mit Python 3.</li>
+<li>Audioserver4Home mit laufendem Sonn Core. Änderungen an Ausgängen sind für 4.0.0-beta.19 vorgesehen.</li>
+<li>Ein erreichbarer Loxone Miniserver, Loxone Config und mindestens ein Netzwerkplayer: ein Squeezelite-Client (z. B. piCorePlayer) oder ein DLNA/UPnP-Renderer.</li>
+</ul>
+<h2>2. AudioDek installieren</h2>
+<ol>
+<li>Öffne die Plugin-Verwaltung in LoxBerry und installiere die AudioDek-Installations-ZIP. Eine vorhandene AudioDek-Installation kannst du direkt aktualisieren.</li>
+<li>Öffne AudioDek. Klicke auf „Aktualisieren / Neu erkennen“ und prüfe, ob die Sonn-Konfiguration erkannt wird.</li>
+<li>Für die Gerätesuche melde dich in AudioDek unter „Sonn-Zugang“ mit einem Sonn-Administratorkonto an. AudioDek speichert das Passwort nicht.</li>
+</ol>
+<h2>3. Eine Zone in Loxone anlegen</h2>
+<ol>
+<li>Aktiviere in Sonn unter „Zones“ die Loxone-Integration.</li>
+<li>Lege in Loxone Config einen Audio-Player-Baustein an, weise ihm einen Raum zu und verbinde ihn mit einem Ausgang des Audioservers.</li>
+<li>Übertrage die Konfiguration an den Miniserver. Aktualisiere anschließend AudioDek und prüfe, ob die Zone angezeigt wird.</li>
+</ol>
+<figure><img src="guide-images/en/audioserver-layout.png" alt="Beispiel eines Audioservers mit mehreren Zonen in Loxone Config"><figcaption>Beispiel: Audioserver und Zonen in Loxone Config.</figcaption></figure>
+<figure><img src="guide-images/en/audio-player-block.png" alt="Audio-Player-Baustein mit verbundenem Ausgang"><figcaption>Beispiel: Audio-Player-Baustein mit zugewiesenem Ausgang.</figcaption></figure>
+<h2>4. Einen Player zuweisen</h2>
+<ul>
+<li><strong>Squeezelite:</strong> Konfiguriere den Client so, dass er sich mit Sonn verbindet. Wähle in AudioDek eine Zone und einen erkannten Player. Falls nötig, gib Name, IP-Adresse und Player-ID manuell ein.</li>
+<li><strong>DLNA:</strong> Schalte den Renderer ein und verbinde ihn mit demselben Netzwerk. Öffne „DLNA-Player“, starte die Suche und wähle eine Zone ohne Ausgang. Der DLNA-Schalter unter „Receivers“ in Sonn ist dafür nicht erforderlich.</li>
+<li>Prüfe die Vorschau und bestätige die Zuweisung. AudioDek erstellt vorher eine Sicherung. Beim Anwenden wird Sonn neu gestartet; laufende Wiedergaben werden unterbrochen.</li>
+</ul>
+<h2>5. Wiedergabe prüfen</h2>
+<p>Starte im Sonn Player Musik in genau einer Zone und prüfe den Ton am Gerät. Aktualisiere AudioDek: Die Zone erscheint in der Tabelle für DLNA oder Squeezelite und bei laufender Wiedergabe zusätzlich unter „Zonen mit laufender Wiedergabe“. Der Status stammt von Sonn und bestätigt keinen hörbaren Ton. Ein aktiver Soloist-Prozess allein bedeutet keine laufende Wiedergabe.</p>
+<p>Teste mehrere Zonen zunächst einzeln. Eine verzögerungsfreie Synchronisation zwischen DLNA und Squeezelite ist nicht für alle Geräte bestätigt.</p>
+<h2>6. Sicherungen und Wiederherstellung</h2>
+<p>Eine Zonensicherung enthält die gesamte Sonn-Konfiguration und die Soloist-Daten der ausgewählten Zone. Sie enthält nicht die Soloist-Daten aller Zonen. Eine Wiederherstellung kann auch spätere Konfigurationsänderungen an anderen Zonen zurücksetzen. Verwende zunächst die Vorschau.</p>
+<h2>Bei Problemen</h2>
+<ul>
+<li><strong>Zone fehlt:</strong> Prüfe den Audio-Player-Baustein und die Übertragung an den Miniserver.</li>
+<li><strong>DLNA-Gerät fehlt:</strong> Prüfe Strom, Netzwerk und ob das Gerät als UPnP-Renderer verfügbar ist. Ein bereits zugewiesener Ausgang kann funktionieren, auch wenn eine Suche ihn gerade nicht findet.</li>
+<li><strong>Kein Ton:</strong> Wähle die Zone direkt im Sonn Player, starte die Wiedergabe und kontrolliere die Sonn-Protokolle sowie die Audioverbindung am Gerät.</li>
+<li><strong>Updates:</strong> Wähle in LoxBerry den Kanal für Vorabversionen und Releases, wenn du Testversionen erhalten möchtest.</li>
+</ul>
+<p><a href="https://wiki.loxberry.de/plugins/audiodek/start">AudioDek im LoxBerry-Wiki</a> · <a href="https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases">Downloads auf GitHub</a></p>
+</main></body></html>

@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.11 — test build
+- Add German dashboard language and retain all three illustrated guides.
+
+
+## 1.0.10 — test build
+- Separate DLNA, Squeezelite and other configured zones.
+- Show playback state from Sonn separately from Soloist processes.
+- Count all configured outputs, including DLNA.
+- Retain the experimental DLNA discovery and assignment workflow.
+
+
 ## 1.0.8 — experimental — 2026-10-12
 - Restore automatic update support: LoxBerry's installer requires a nonempty RELEASECFG even for pre-release updates.
 - Provide a valid reserved stable feed (0.0.0); test releases remain in prerelease.cfg.
@@ -33,3 +44,4 @@
 
 ## 1.0.3
 - Illustrated anonymized guide and dedicated AudioDek logo.
+

@@ -16,7 +16,7 @@ if (($ENV{'REQUEST_METHOD'} || '') eq 'POST') {
     read(STDIN, $body, $len) if $len > 0;
 }
 
-LoxBerry::Web::lbheader("AudioDek", "v1.0.7", "", "");
+LoxBerry::Web::lbheader("AudioDek", "v1.0.11", "", "");
 
 my ($child_out, $child_in);
 my $pid = open2($child_out, $child_in, $helper);

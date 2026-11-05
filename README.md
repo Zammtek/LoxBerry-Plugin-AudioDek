@@ -2,7 +2,7 @@
 
 # AudioDek — LoxBerry multiroom setup
 
-**Experimental / testers wanted. Current test release: v1.0.8, English / Spanish edition.**
+**Experimental / testers wanted. Current test release: v1.0.11, English / Spanish / German edition.**
 
 AudioDek helps assign Squeezelite players to rooms supplied by Sonn and Loxone,
 with guided diagnostics, pre-change backups and an illustrated setup guide.
@@ -12,6 +12,10 @@ Playback is handled by Sonn; everyday controls remain in the Loxone app.
 
 - [AudioDek documentation on the LoxBerry Wiki](https://wiki.loxberry.de/plugins/audiodek/start)
 - [AudioDek discussion, feedback and support on LoxForum](https://www.loxforum.com/forum/projektforen/loxberry/plugins/493296)
+
+## DLNA and playback status
+
+AudioDek separates DLNA and Squeezelite outputs and lists zones that Sonn reports as playing when the dashboard is refreshed. A running Soloist process does not confirm playback. The DLNA discovery and assignment workflow is experimental; mixed-protocol synchronization has not been validated.
 
 ## Requirements
 
@@ -42,13 +46,13 @@ do not contain the repository URL. No newer update is available until published.
 
 ## Language / Idioma
 
-Choose **English** or **Español** at the top of AudioDek and save your preference.
-On first use, AudioDek reads LoxBerry's language (English/Spanish); other languages
+Choose **English**, **Español** or **Deutsch** at the top of AudioDek and save your preference.
+On first use, AudioDek reads LoxBerry's language (English/Spanish/German); other languages
 fall back to English. The preference belongs to this AudioDek installation.
 The interface, diagnostics, messages and illustrated guide follow the selection.
 Existing room/player names, settings and backups are not translated or modified.
 Open forms keep their original language. Confirm with ASSIGN/REMOVE/RESTORE in
-English or ASIGNAR/RETIRAR/RESTAURAR in Spanish.
+English and German, or ASIGNAR/RETIRAR/RESTAURAR in Spanish.
 
 Selecciona **Español** en **Language / Idioma** y pulsa **Guardar idioma**.
 La preferencia se conserva al actualizar; las habitaciones y backups no cambian.

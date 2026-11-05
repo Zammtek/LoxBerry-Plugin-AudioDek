@@ -6,8 +6,8 @@ import configparser, hashlib, zipfile
 base=Path(__file__).resolve().parent
 cfg=configparser.ConfigParser();cfg.read(base/'plugin.cfg')
 version=cfg['PLUGIN']['VERSION']
-target=base.parent/('AudioDek_LoxBerry4_v'+version+'_EN_ES_x86_64.zip')
-excluded={'SHA256SUMS','build_release.py','verify_release.py'}
+target=base.parent/('AudioDek_LoxBerry4_v'+version+'_EN_ES_DE_x86_64.zip')
+excluded={'SHA256SUMS','build_release.py','verify_release.py','release.cfg','prerelease.cfg'}
 with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as z:
     for path in sorted(base.rglob('*')):
         if not path.is_file():continue
@@ -21,3 +21,4 @@ with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as z:
 digest=hashlib.sha256(target.read_bytes()).hexdigest()
 (base/'SHA256SUMS').write_text(digest+'  '+target.name+'\n',encoding='utf-8')
 print(target)
+

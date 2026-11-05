@@ -25,7 +25,7 @@ def main():
         try:
             language.save_language(get('language'), get('language_token'))
             selected = get('language')
-            message = 'Idioma guardado.' if selected == 'es' else 'Language saved.'
+            message = 'Idioma guardado.' if selected == 'es' else ('Sprache gespeichert.' if selected == 'de' else 'Language saved.')
         except (OSError, ValueError) as error:
             message = html.escape(str(error))
         # A language request must never dispatch a configuration action.
@@ -33,13 +33,15 @@ def main():
         os.environ['REQUEST_METHOD'] = 'GET'
         os.environ['QUERY_STRING'] = ''
         os.environ['CONTENT_LENGTH'] = '0'
-    elif method == 'POST' and get('_ui_language') in ('en', 'es'):
+    elif method == 'POST' and get('_ui_language') in ('en', 'es', 'de'):
         selected = get('_ui_language')
     sys.stdin = io.StringIO(raw)
     esc = html.escape
-    label = 'Guardar idioma' if selected == 'es' else 'Save language'
+    label = 'Guardar idioma' if selected == 'es' else ('Sprache speichern' if selected == 'de' else 'Save language')
     hint = ('Cambiar el idioma no modifica las habitaciones ni los backups.' if selected == 'es'
             else 'Changing language does not modify rooms or backups.')
+    if selected == 'de':
+        hint = 'Die Spracheinstellung ändert keine Räume oder Sicherungen.'
     try:
         preference_token = language.token()
     except OSError:
@@ -48,8 +50,8 @@ def main():
                    else 'Cannot save language: check AudioDek permissions.')
     print('<div style="max-width:1180px;margin:12px auto;padding:12px;border:1px solid #ddd;border-radius:10px">')
     print('<form action="index.cgi" method="post" data-ajax="false"><input type="hidden" name="action" value="change_language">')
-    print('<input type="hidden" name="language_token" value="'+esc(preference_token)+'"><label>Language / Idioma<select name="language">')
-    for code, name in [('en', 'English'), ('es', 'Español')]:
+    print('<input type="hidden" name="language_token" value="'+esc(preference_token)+'"><label>Language / Idioma / Sprache<select name="language">')
+    for code, name in [('en', 'English'), ('es', 'Español'), ('de', 'Deutsch')]:
         print('<option value="'+code+'"'+(' selected' if code == selected else '')+'>'+name+'</option>')
     print('</select></label><button type="submit">'+label+'</button></form><p>'+hint+'</p>')
     if message:

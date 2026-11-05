@@ -10,17 +10,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and publish v1.0.8
+      - name: Build, verify and publish v1.0.11
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python3 build_release.py
           python3 -m compileall -q bin
-          python3 verify_release.py
-          gh release create v1.0.8 --prerelease --title "AudioDek v1.0.8 — automatic update fix" --notes "Restores automatic updates disabled by empty RELEASECFG in 1.0.7. Install this ZIP manually once without uninstalling, then select Pre- and Releases. Application logic, settings, backups and language remain unchanged. Metadata and package checks pass; confirmation on LoxBerry remains pending." ../AudioDek_LoxBerry4_v1.0.8_EN_ES_x86_64.zip SHA256SUMS
-          printf '[AUTOUPDATE]\nVERSION=1.0.8\nARCHIVEURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/download/v1.0.8/AudioDek_LoxBerry4_v1.0.8_EN_ES_x86_64.zip\nINFOURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/tag/v1.0.8\n' > prerelease.cfg
+          python3 build_release.py
+          python3 - <<'PY'
+          import configparser, hashlib, zipfile
+          from pathlib import Path
+          p = Path('../AudioDek_LoxBerry4_v1.0.11_EN_ES_DE_x86_64.zip')
+          assert hashlib.sha256(p.read_bytes()).hexdigest() == Path('SHA256SUMS').read_text().split()[0]
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              cfg = configparser.ConfigParser()
+              cfg.read_string(z.read('plugin.cfg').decode())
+              assert cfg['PLUGIN']['VERSION'] == '1.0.11'
+              assert cfg['AUTOUPDATE'].getboolean('AUTOMATIC_UPDATES')
+              assert cfg['AUTOUPDATE']['RELEASECFG'].endswith('/main/release.cfg')
+              assert cfg['AUTOUPDATE']['PRERELEASECFG'].endswith('/main/prerelease.cfg')
+              assert b"('de', 'Deutsch')" in z.read('bin/dashboard.py')
+              for lang in ('en','es','de'):
+                  assert f'bin/languages/{lang}/dashboard.py' in z.namelist()
+                  assert f'webfrontend/htmlauth/guide-{lang}.html' in z.namelist()
+              assert not {'release.cfg','prerelease.cfg','language.json','settings.json'} & set(z.namelist())
+          PY
+          gh release create v1.0.11 --target "$GITHUB_SHA" --prerelease --title "AudioDek v1.0.11 — DLNA, playback status and German" --notes "Separate DLNA and Squeezelite zones, show playback status reported by Sonn, and add German to the dashboard and illustrated guides. Experimental DLNA discovery and assignment; mixed-protocol synchronization is not verified. Install over the existing AudioDek version without uninstalling." ../AudioDek_LoxBerry4_v1.0.11_EN_ES_DE_x86_64.zip SHA256SUMS
+          printf '[AUTOUPDATE]\nVERSION=1.0.11\nARCHIVEURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/download/v1.0.11/AudioDek_LoxBerry4_v1.0.11_EN_ES_DE_x86_64.zip\nINFOURL=https://github.com/Zammtek/LoxBerry-Plugin-AudioDek/releases/tag/v1.0.11\n' > prerelease.cfg
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add prerelease.cfg SHA256SUMS
-          git commit -m "Enable AudioDek v1.0.8 update after publishing installer"
+          git commit -m "Enable AudioDek v1.0.11 pre-release updates"
           git push

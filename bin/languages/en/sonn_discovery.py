@@ -15,21 +15,22 @@ BASE = 'http://127.0.0.1:7090/admin/api'
 class DiscoveryError(Exception):
     pass
 
-def request(path, token='', body=None):
+def request(path, token='', body=None, timeout=3):
     headers = {'Accept': 'application/json'}
     if token:
         headers['Authorization'] = 'Bearer ' + token
     data = None if body is None else json.dumps(body).encode()
     if data is not None:
         headers['Content-Type'] = 'application/json'
-    req = urllib.request.Request(BASE + path, data=data, headers=headers)
+    url = BASE.removesuffix('/admin/api') + path if path == '/api/v1/zones' else BASE + path
+    req = urllib.request.Request(url, data=data, headers=headers)
     # Ignore environment proxies and refuse redirects (credentials stay local).
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, *args, **kwargs):
             return None
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
     try:
-        with opener.open(req, timeout=3) as response:
+        with opener.open(req, timeout=timeout) as response:
             raw = response.read(1048577)
         if len(raw) > 1048576:
             raise DiscoveryError("Sonn's response is too large.")
